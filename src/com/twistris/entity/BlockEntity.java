@@ -2,19 +2,25 @@ package com.twistris.entity;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
-import com.twistris.Global;
 import com.twistris.data.BlockShape;
 
 public class BlockEntity extends BaseEntity{
+	public BlockShape shape;
+	public int orientation;
 	public ArrayList<TileEntity> tiles;
 	
-	public BlockEntity(int x, int y, BlockShape shape){
+	public BlockEntity(int x, int y, BlockShape shape, Color color){
+		this.x = x;
+		this.y = y;
+		this.orientation = 0;
+		this.shape = shape;
+		
 		this.tiles = new ArrayList<TileEntity>();
 		Vector2[] offsets = shape.getOffsets();
 		for(int i=0; i<offsets.length; i++){
-			this.tiles.add(new TileEntity((int)offsets[i].x, (int)offsets[i].y, "graphics/tile.png", 
-					Global.getColor(Global.colors[Global.random.nextInt(Global.colors.length)])));
+			this.tiles.add(new TileEntity((int)offsets[i].x, (int)offsets[i].y, "graphics/tile.png", color));
 		}
 	}
 	
