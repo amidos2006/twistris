@@ -6,16 +6,16 @@ import com.badlogic.gdx.Gdx;
 import com.twistris.Global;
 
 public class PlayerControl {
-	private ArrayList<Integer> leftColor;
-	private ArrayList<Integer> rightColor;
-	private ArrayList<Integer> downColor;
-	private ArrayList<Integer> rotateColor;
+	public ArrayList<Integer> leftColor;
+	public ArrayList<Integer> rightColor;
+	public ArrayList<Integer> downColor;
+	public ArrayList<Integer> rotateColor;
 	
 	private boolean leftDown;
 	private boolean rightDown;
 	private boolean downDown;
 	
-	public PlayerControl(){
+	public PlayerControl(int size){
 		this.leftColor = new ArrayList<Integer>();
 		this.rightColor = new ArrayList<Integer>();
 		this.downColor = new ArrayList<Integer>();
@@ -24,6 +24,11 @@ public class PlayerControl {
 		this.leftDown = false;
 		this.rightDown = false;
 		this.downDown = false;
+		
+		this.changeColor(this.leftColor, size);
+		this.changeColor(this.rightColor, size);
+		this.changeColor(this.downColor, size);
+		this.changeColor(this.rotateColor, size);
 	}
 	
 	private boolean checkDown(ArrayList<Integer> color){

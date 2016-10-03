@@ -42,6 +42,7 @@ public class BaseState {
 	
 	public void removeEntity(BaseEntity e){
 		if(!this.removed.contains(e)){
+			e.isAlive = false;
 			this.removed.add(e);
 		}
 	}
@@ -50,8 +51,8 @@ public class BaseState {
 		for(int i=0; i<this.added.size(); i++){
 			if(this.added.get(i).state == null){
 				this.entities.add(this.added.get(i));
-				this.added.get(i).begin();
 				this.added.get(i).state = this;
+				this.added.get(i).begin();
 			}
 		}
 	}
@@ -68,7 +69,9 @@ public class BaseState {
 	
 	public void update(){
 		for(int i=0; i<this.entities.size(); i++){
-			this.entities.get(i).update();
+			if(this.entities.get(i).isAlive){
+				this.entities.get(i).update();
+			}
 		}
 		
 		this.addEntities();
